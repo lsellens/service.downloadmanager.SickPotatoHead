@@ -1,0 +1,9 @@
+<settings>
+    <setting id="SICKPOTATOHEAD_IP" value="0.0.0.0" />
+    <setting id="SICKPOTATOHEAD_PWD" value="" />
+    <setting id="SICKPOTATOHEAD_USER" value="" />
+    <setting id="SICKBEARD_LAUNCH" value="true" />
+    <setting id="COUCHPOTATO_LAUNCH" value="true" />
+    <setting id="HEADPHONES_LAUNCH" value="true" />
+    <setting id="RESTART_ON_RESUME" value="false" />
+</settings>

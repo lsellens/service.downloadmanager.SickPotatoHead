@@ -1,0 +1,183 @@
+1.4.4
+- update to CouchPotatoServer-2252ed7
+- update to HeadPhones-6b4fbe0
+- update to SickRage-9eb9400
+
+1.4.3
+- update to SickRage-ace2d3d
+
+1.4.2
+- update to CouchPotatoServer-04aa2e5
+- update to HeadPhones-34097e2
+- update to SickRage-6eccffc
+
+1.4.1
+- update to HeadPhones-5cb9d78
+- fix for sickrage webui becoming inaccessable
+
+1.4.0
+- update to CouchPotatoServer-e75a852
+- update to SickRage-dbc30c4
+
+1.3.9
+- switching to SickRage SickBeard branch
+
+1.3.8
+- Fix XBMC crash on frodo
+- update to HeadPhones-c170b2a
+
+1.3.7
+- update to CouchPotatoServer-45b2dff
+
+1.3.6
+- update to CouchPotatoServer-b45307e
+- update to HeadPhones-88af845
+
+1.3.5
+- Fix for installs not running transmission addon
+
+1.3.4
+- Missed some typos
+
+1.3.3
+- Fix for last update
+
+1.3.2
+- update to HeadPhones-e67d324
+- Update tp CouchPotatoServer-2402834
+- updates to addon structure
+
+1.3.1
+- update to CouchPotatoServer-b69f8b7
+- Switching SickBeard to mr-orange branch-09ddc02
+- added lxml
+- several general updates
+
+1.3.0
+- update to CouchPotatoServer-d7445df
+
+1.2.9
+- update to CouchPotatoServer-2cfff73
+- update to HeadPhones-e879af6
+
+1.2.8
+- update to CouchPotatoServer-190e1d2
+
+1.2.7
+- update to CouchPotatoServer-b468048
+- bumped required python version to 2.1.0 for gotham
+- bumped required openelec version to 3.0 (frodo)
+
+1.2.6
+- update to CouchPotatoServer-b427563
+- update to SickBeard-9663671
+- update to Headphones-8ffd451
+
+1.2.5
+- update to CouchPotatoServer-d764d0f
+
+1.2.4
+- update to SickBeard-c59063a
+- update to Headphones-dc69421
+
+1.2.3
+- Attemping to fix unable to start error with 1.2.2
+
+1.2.2
+- Disable restarting suite opon exiting addon settings
+- update to SickBeard-4d77db9
+
+1.2.1
+- update to SickBeard-55d9f11
+- update to Headphones-8bd1bfc
+
+1.2.0
+- update to CouchPotatoServer-fc8db13
+- update to SickBeard-7328164
+- update to Headphones-c0cbe6f
+
+1.1.9
+- update to CouchPotatoServer-06a211a
+- update to SickBeard-dc109eb
+
+1.1.8
+- update to CouchPotatoServer-fb90f65
+- update to SickBeard-bcc6ad3
+- update to Headphones-bb3b747
+
+1.1.7
+- update to CouchPotatoServer-40324ee
+- update to SickBeard-9cac2ff
+
+1.1.6
+- update to CouchPotatoServer-5c0d8a7
+- update to SickBeard-138b0ea
+- update to Headphones-452cf15
+
+1.1.5
+- update to CouchPotatoServer-f1dde5c
+- update to SickBeard-effb693
+
+1.1.4
+- update to CouchPotatoServer-0eff4f0
+- update to Headphones-ebbe908
+
+1.1.3
+- update to SickBeard-098b654
+
+1.1.2
+- update to CouchPotatoServer-5a23be2
+- update to SickBeard-476e8e1
+
+1.1.1
+- update to CouchPotatoServer-4db1b57
+- update to SickBeard-c8cbdbe
+
+1.1.0
+- update to SickBeard-024e86d
+- update to CouchPotatoServer-f84aa8c
+- Made file permissions configurable
+
+1.0.9
+- Fix issue with RPi not finding its binaries
+- Better error logging
+- update to SickBeard-c23e9ac5
+- update to CouchPotatoServer-a49a00a
+
+1.0.8
+- update to SickBeard-536131f
+- update to CouchPotatoServer-673843f
+
+1.0.7
+- update to CouchPotatoServer-811f35b
+- update to SickBeard-3983fa5
+- added option to restart the suite on suspend / resume
+
+1.0.6
+- update to CouchPotatoServer-ec6e2c2
+- update to SickBeard-fe4a273
+
+1.0.5
+- update to CouchPotatoServer-3187a0f
+- update to SickBeard-5ecc249
+
+1.0.4
+- update to Headphones-263272c
+
+1.0.3
+- No longer need to build for each platform it now detects architecture and uses _namemapper.so from cheetah for that build.
+- fixed eztv's fallback to twitter feed in sickbeard
+- update to CouchPotatoServer-393c14d
+
+1.0.2
+- made addon settings accessible from programs menu
+- Fixed bug causing configobj to throw an exception with Couchpotato v2s config
+- update to CouchPotatoServer-7e62342
+- update to Headphones-cb52d97
+- updated SickBeard to fixed notifications in frodo
+
+1.0.1
+- corrected a bug with transmission auth
+
+1.0.0
+- initial version forked from SABnzbd-Suite-2.8.1

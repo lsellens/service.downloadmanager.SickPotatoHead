@@ -1,0 +1,55 @@
+# XBMC Media Center language file
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenELEC-addons\n"
+"Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
+"POT-Creation-Date: 2014-04-03 02:08+0000\n"
+"PO-Revision-Date: 2014-04-03 02:11+0000\n"
+"Last-Translator: lsellens <lsellens@gmail.com>\n"
+"Language-Team: LANGUAGE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#1000"
+msgid "SickPotatoHead"
+msgstr "SickPotatoHead"
+
+msgctxt "#1010"
+msgid "User Settings"
+msgstr "User Settings"
+
+msgctxt "#1022"
+msgid "Username"
+msgstr "Username"
+
+msgctxt "#1023"
+msgid "Password"
+msgstr "Password"
+
+msgctxt "#1024"
+msgid "Enable Sickbeard"
+msgstr "Enable Sickbeard"
+
+msgctxt "#1025"
+msgid "Enable Couchpotato"
+msgstr "Enable Couchpotato"
+
+msgctxt "#1026"
+msgid "Enable Headphones"
+msgstr "Enable Headphones"
+
+msgctxt "#2010"
+msgid "Network Settings"
+msgstr "Network Settings"
+
+msgctxt "#2021"
+msgid "Allowed IP addresses"
+msgstr "Allowed IP addresses"
+
+msgctxt "#2022"
+msgid "Restart on suspend / resume"
+msgstr "Restart on suspend / resume"

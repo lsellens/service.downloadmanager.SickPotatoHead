@@ -1,0 +1,29 @@
+#!/bin/sh
+
+. packages/CouchPotatoServer/meta
+cd mkpkg
+
+echo "building $PKG_NAME..."
+echo "getting sources..."
+  if [ ! -d build.$PKG_NAME.git ]; then
+    git clone $PKG_SITE.git build.$PKG_NAME.git
+  fi
+
+  cd build.$PKG_NAME.git
+    git checkout master
+    git pull
+    git checkout $PKG_VERSION
+    GIT_REV=`git log -n1 --format=%h`
+  cd ..
+
+  echo "copying sources..."
+   rm -rf $PKG_NAME-$GIT_REV
+   cp -R build.$PKG_NAME.git $PKG_NAME-$GIT_REV
+
+  echo "cleaning sources..."
+   rm -rf $PKG_NAME-$GIT_REV/.git* $PKG_NAME-$GIT_REV/init $PKG_NAME-$GIT_REV/license.txt $PKG_NAME-$GIT_REV/*.md
+
+  echo "moving sources..."
+   mv $PKG_NAME-$GIT_REV ../build/service.downloadmanager.SickPotatoHead/resources/$PKG_NAME
+
+  echo "done"

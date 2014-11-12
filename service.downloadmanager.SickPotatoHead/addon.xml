@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="service.downloadmanager.SickPotatoHead"
+       name="SickPotatoHead"
+       version="1.4.4"
+       provider-name="lsellens">
+  <requires>
+    <import addon="os.openelec.tv" version="3.0"/>
+    <import addon="xbmc.addon" version="12.0.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
+
+  </requires>
+  <extension point="xbmc.python.script"
+             library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service"
+             library="service.py">
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">SickPotatoHead is a Metapackage which combines SickBeard, Couchpotato and Headphones in one Addon built from SABnzdb-Suite</summary>
+    <summary lang="nl">SickPotatoHead is een metapackage wat Sickbeard, Couchpotato en Headphones combineerd in één add-on gebouwd vanuit SABnzbd-Suite</summary>
+    <summary lang="fr">SickPotatoHead est un méta-paquet qui combine SickBeard, Couchpotato et Headphones en un seul add-on construit depuis SABnzdb-Suite.</summary>
+    <summary lang="pt">SickPotatoHead é um Metapacote que combina o SickBeard, Couchpotato e Headphones num único Addon construído a partir da SABnzdb-Suite</summary>
+    <summary lang="es">SickPotatoHead es un Metapaquete el cual combina SickBeard, Couchpotato y Headphones en un solo Addon construido a partir de SABnzdb-Suite</summary>
+    <description lang="en">SickPotatoHead is a fork of SABnzbd-Suite geared toward us unfortunate enough not to have newsgroups access. Updated frequently to newest versions of SB, CP, and HP.</description>
+    <description lang="nl">SickPotatohead is een afsplitsing van SABnzbd-Suite gericht op ons die jammer genoeg niet tot nieuwsgroepen toegang hebben. Regelmatig bijgewerkt naar de nieuwste versies van SB, CP, en HP.</description>
+    <description lang="fr">SickPotatoHead est un fork de SABnzbd-Suite destiné à vous qui n'avez malheureusement pas assez d'accès aux newsgroups. Mis à jour régulièrement vers les nouvelles versions de SB, CP, et HP.</description>
+    <description lang="pt">O SickPotatoHead é uma derivação da SABnzbd-Suite, destinada aos menos afortunados que não possuem acesso a newsgroups. É actualizado frequentemente para as versões mais recentes de SB, CP, and HP.</description>
+    <description lang="es">SickPotatoHead es un fork derivado de SABnzbd-Suite orientado a los que como nosotros no tenemos acceso a grupos de noticias. Se actualiza frecuentemente a las últimas versiones de SB, CP, y HP.</description>
+    <platform>linux</platform>
+  </extension>
+</addon>
