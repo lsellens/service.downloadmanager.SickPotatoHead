@@ -13,7 +13,6 @@ if [ "$RESTART_ON_RESUME" == "true" ] ; then
     hibernate|suspend)
       if [ ! -z "`ps | grep -E 'python.*service.downloadmanager.SickPotatoHead' | awk '{print $1}'`" ] ; then
         progress "Shutting down SickPotatoHead for suspending..."
-        python $HOME/.xbmc/addons/service.downloadmanager.SickPotatoHead/resources/SickPotatoHead.stop.py
         kill `ps | grep -E 'python.*service.downloadmanager.SickPotatoHead' | awk '{print $1}'` 2>/dev/null
         touch $LOCKFILE
       fi

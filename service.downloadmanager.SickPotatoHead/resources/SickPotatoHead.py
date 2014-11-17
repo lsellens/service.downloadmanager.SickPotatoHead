@@ -1,5 +1,4 @@
 # Initializes and launches Couchpotato V2, Sickbeard and Headphones
-
 from xml.dom.minidom import parseString
 from lib.configobj import ConfigObj
 import os
@@ -28,16 +27,19 @@ __addonhome__         = xbmc.translatePath(__addon__.getAddonInfo('profile'))
 # settings
 pDefaultSuiteSettings = xbmc.translatePath(__addonpath__ + '/settings-default.xml')
 pSuiteSettings        = xbmc.translatePath(__addonhome__ + 'settings.xml')
-pXbmcSettings         = '/storage/.xbmc/userdata/guisettings.xml'
+pXbmcSettings         = xbmc.translatePath('special://home/userdata/guisettings.xml')
 pSickBeardSettings    = xbmc.translatePath(__addonhome__ + 'sickbeard.ini')
 pCouchPotatoServerSettings  = xbmc.translatePath(__addonhome__ + 'couchpotatoserver.ini')
 pHeadphonesSettings   = xbmc.translatePath(__addonhome__ + 'headphones.ini')
 
+#Get Device Home DIR
+pHomeDIR = os.path.expanduser('~/')
+
 # directories
-pSickPotatoHeadComplete       = '/storage/downloads'
-pSickPotatoHeadCompleteTV     = '/storage/downloads/tvshows'
-pSickPotatoHeadCompleteMov    = '/storage/downloads/movies'
-pSickPotatoHeadWatchDir       = '/storage/downloads/watch'
+pSickPotatoHeadComplete       = pHomeDIR+'downloads'
+pSickPotatoHeadCompleteTV     = pHomeDIR+'downloads/tvshows'
+pSickPotatoHeadCompleteMov    = pHomeDIR+'downloads/movies'
+pSickPotatoHeadWatchDir       = pHomeDIR+'downloads/watch'
 
 # pylib
 pPylib                = xbmc.translatePath(__addonpath__ + '/resources/lib')
@@ -77,27 +79,25 @@ if not xbmcvfs.exists(pSuiteSettings):
 
 # Transmission-Daemon
 transauth = False
-# work around for frodo crash will fix this later
-if xbmcvfs.exists('/storage/.xbmc/addons/service.downloadmanager.transmission/default.py'):
-    try:
-        transmissionaddon = xbmcaddon.Addon(id='service.downloadmanager.transmission')
-        transauth = (transmissionaddon.getSetting('TRANSMISSION_AUTH').lower() == 'true')
+try:
+   transmissionaddon = xbmcaddon.Addon(id='service.downloadmanager.transmission')
+   transauth = (transmissionaddon.getSetting('TRANSMISSION_AUTH').lower() == 'true')
 
-        if transauth:
-            xbmc.log('SickPotatoHead: Transmission Authentication Enabled', level=xbmc.LOGDEBUG)
-            transuser = (transmissionaddon.getSetting('TRANSMISSION_USER').decode('utf-8'))
-            if transuser == '':
-                transuser = None
-            transpwd = (transmissionaddon.getSetting('TRANSMISSION_PWD').decode('utf-8'))
-            if transpwd == '':
-                transpwd = None
-        else:
-            xbmc.log('SickPotatoHead: Transmission Authentication Not Enabled', level=xbmc.LOGDEBUG)
+   if transauth:
+        xbmc.log('SickPotatoHead: Transmission Authentication Enabled', level=xbmc.LOGDEBUG)
+        transuser = (transmissionaddon.getSetting('TRANSMISSION_USER').decode('utf-8'))
+        if transuser == '':
+            transuser = None
+        transpwd = (transmissionaddon.getSetting('TRANSMISSION_PWD').decode('utf-8'))
+        if transpwd == '':
+            transpwd = None
+    else:
+        xbmc.log('SickPotatoHead: Transmission Authentication Not Enabled', level=xbmc.LOGDEBUG)
 
-    except Exception, e:
-        xbmc.log('SickPotatoHead: Transmission Settings are not present', level=xbmc.LOGNOTICE)
-        xbmc.log(str(e), level=xbmc.LOGNOTICE)
-        pass
+except Exception, e:
+    xbmc.log('SickPotatoHead: Transmission Settings are not present', level=xbmc.LOGNOTICE)
+    xbmc.log(str(e), level=xbmc.LOGNOTICE)
+    pass
 
 # SickPotatoHead-Suite
 user = (__addon__.getSetting('SICKPOTATOHEAD_USER').decode('utf-8'))
@@ -126,15 +126,24 @@ except StandardError:
 # prepare execution environment
 # -----------------------------
 parch                         = os.uname()[4]
-pnamemapper                   = xbmc.translatePath(pPylib + '/Cheetah/_namemapper.so')
-punrar                        = xbmc.translatePath(__addonpath__ + '/bin/unrar')
 
 xbmc.log('SickPotatoHead: ' + parch + ' architecture detected', level=xbmc.LOGDEBUG)
 
-if parch.startswith('arm'):
-    parch = 'arm'
+if not xbmcvfs.exists(xbmc.translatePath(pPylib + '/arch.' + parch)):
+    xbmc.log('SickPotatoHead: Setting up binaries:', level=xbmc.LOGDEBUG)
 
-if not xbmcvfs.exists(pnamemapper):
+    if xbmcvfs.exists(xbmc.translatePath(pPylib + '/arch.i686')):
+        xbmcvfs.delete(xbmc.translatePath(pPylib + '/arch.i686'))
+    if xbmcvfs.exists(xbmc.translatePath(pPylib + '/arch.x86_64')):
+        xbmcvfs.delete(xbmc.translatePath(pPylib + '/arch.x86_64'))
+    if xbmcvfs.exists(xbmc.translatePath(pPylib + '/arch.armv6l')):
+        xbmcvfs.delete(xbmc.translatePath(pPylib + '/arch.armv6l'))
+    if xbmcvfs.exists(xbmc.translatePath(pPylib + '/arch.armv7l')):
+        xbmcvfs.delete(xbmc.translatePath(pPylib + '/arch.armv7l'))
+
+    pnamemapper                   = xbmc.translatePath(pPylib + '/Cheetah/_namemapper.so')
+    punrar                        = xbmc.translatePath(__addonpath__ + '/bin/unrar')
+
     try:
         fnamemapper                   = xbmc.translatePath(pPylib + '/multiarch/_namemapper.so.' + parch)
         xbmcvfs.copy(fnamemapper, pnamemapper)
@@ -143,7 +152,6 @@ if not xbmcvfs.exists(pnamemapper):
         xbmc.log('SickPotatoHead: Error Copying _namemapper.so for ' + parch, level=xbmc.LOGERROR)
         xbmc.log(str(e), level=xbmc.LOGERROR)
 
-if not xbmcvfs.exists(punrar):
     try:
         funrar                        = xbmc.translatePath(pPylib + '/multiarch/unrar.' + parch)
         xbmcvfs.copy(funrar, punrar)
@@ -152,6 +160,8 @@ if not xbmcvfs.exists(punrar):
     except Exception, e:
         xbmc.log('SickPotatoHead: Error Copying unrar for ' + parch, level=xbmc.LOGERROR)
         xbmc.log(str(e), level=xbmc.LOGERROR)
+
+    xbmcvfs.File(xbmc.translatePath(pPylib + '/arch.' + parch), 'w').close()
 
 os.environ['PYTHONPATH'] = str(os.environ.get('PYTHONPATH')) + ':' + pPylib
 
@@ -193,7 +203,7 @@ try:
         defaultConfig['General']['naming_use_periods']    = '1'
         defaultConfig['General']['naming_sep_type']       = '1'
         defaultConfig['General']['naming_ep_type']        = '1'
-        defaultConfig['General']['root_dirs']             = '0|/storage/tvshows'
+        defaultConfig['General']['root_dirs']             = '0|'+pHomeDIR+'tvshows'
         defaultConfig['General']['naming_custom_abd']     = '0'
         defaultConfig['General']['naming_abd_pattern']    = '%SN - %A-D - %EN'
         defaultConfig['Blackhole'] = {}
@@ -335,8 +345,8 @@ try:
     if hpfirstLaunch:
         defaultConfig['XBMC']['xbmc_update']                  = '1'
         defaultConfig['XBMC']['xbmc_notify']                  = '1'
-        defaultConfig['General']['music_dir']                 = '/storage/music'
-        defaultConfig['General']['destination_dir']           = '/storage/music'
+        defaultConfig['General']['music_dir']                 = pHomeDIR+'music'
+        defaultConfig['General']['destination_dir']           = pHomeDIR+'music'
         defaultConfig['General']['torrentblackhole_dir']      = pSickPotatoHeadWatchDir
         defaultConfig['General']['download_torrent_dir']      = pSickPotatoHeadComplete
         defaultConfig['General']['move_files']                = '1'

@@ -32,15 +32,15 @@ msgid "Password"
 msgstr "Passwort"
 
 msgctxt "#1024"
-msgid "Enable Sickbeard"
+msgid "Enable Sickbeard on Port: 8082"
 msgstr "Sickbeard aktivieren"
 
 msgctxt "#1025"
-msgid "Enable Couchpotato"
+msgid "Enable Couchpotato on Port: 8083"
 msgstr "Couchpotato aktivieren"
 
 msgctxt "#1026"
-msgid "Enable Headphones"
+msgid "Enable Headphones on Port: 8084"
 msgstr "Headphones aktivieren"
 
 msgctxt "#2010"
