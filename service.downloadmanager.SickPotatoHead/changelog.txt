@@ -4,7 +4,7 @@
 - removed openelec requirement should work on all linux xbmc installs
 - update to CouchPotatoServer-e0cc86b
 - update to HeadPhones-f15ad44
-- update to SickRage-75b6d2f
+- update to SickRage-6270f25
 
 1.4.4
 - update to CouchPotatoServer-2252ed7

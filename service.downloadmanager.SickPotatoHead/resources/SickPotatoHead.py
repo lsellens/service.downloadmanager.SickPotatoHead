@@ -32,6 +32,10 @@ pSickBeardSettings    = xbmc.translatePath(__addonhome__ + 'sickbeard.ini')
 pCouchPotatoServerSettings  = xbmc.translatePath(__addonhome__ + 'couchpotatoserver.ini')
 pHeadphonesSettings   = xbmc.translatePath(__addonhome__ + 'headphones.ini')
 
+# create the settings file if missing
+if not xbmcvfs.exists(pSuiteSettings):
+    xbmcvfs.copy(pDefaultSuiteSettings, pSuiteSettings)
+
 #Get Device Home DIR
 pHomeDIR = os.path.expanduser('~/')
 
@@ -66,13 +70,6 @@ create_dir(pSickPotatoHeadComplete)
 create_dir(pSickPotatoHeadCompleteTV)
 create_dir(pSickPotatoHeadCompleteMov)
 create_dir(pSickPotatoHeadWatchDir)
-
-# fix for old installs
-create_dir(pSickPotatoHeadCompleteTV)
-
-# create the settings file if missing
-if not xbmcvfs.exists(pSuiteSettings):
-    xbmcvfs.copy(pDefaultSuiteSettings, pSuiteSettings)
 
 # read addon and xbmc settings
 # ----------------------------
@@ -185,15 +182,15 @@ try:
     defaultConfig['XBMC']['xbmc_host']              = 'localhost:' + xbmcPort
     defaultConfig['XBMC']['xbmc_username']          = xbmcUser
     defaultConfig['XBMC']['xbmc_password']          = xbmcPwd
+    defaultConfig['TORRENT'] = {}
 
     if transauth:
-        defaultConfig['TORRENT'] = {}
         defaultConfig['TORRENT']['torrent_username']         = transuser
         defaultConfig['TORRENT']['torrent_password']         = transpwd
-        defaultConfig['TORRENT']['torrent_path']             = pSickPotatoHeadCompleteTV
         defaultConfig['TORRENT']['torrent_host']             = 'http://localhost:9091/'
 
     if sbfirstLaunch:
+        defaultConfig['TORRENT']['torrent_path']          = pSickPotatoHeadCompleteTV
         defaultConfig['General']['tv_download_dir']       = pSickPotatoHeadComplete
         defaultConfig['General']['metadata_xbmc_12plus']  = '0|0|0|0|0|0|0|0|0|0'
         defaultConfig['General']['keep_processed_dir']    = '0'
@@ -257,9 +254,6 @@ try:
     defaultConfig['core']['launch_browser']         = '0'
     defaultConfig['core']['host']                   = host
     defaultConfig['core']['data_dir']               = __addonhome__
-    defaultConfig['core']['show_wizard']            = '0'
-    defaultConfig['core']['debug']                  = '0'
-    defaultConfig['core']['development']            = '0'
     defaultConfig['updater'] = {}
     defaultConfig['updater']['enabled']             = '0'
     defaultConfig['updater']['notification']        = '0'
@@ -269,15 +263,15 @@ try:
     defaultConfig['xbmc']['host']                   = 'localhost:' + xbmcPort
     defaultConfig['xbmc']['username']               = xbmcUser
     defaultConfig['xbmc']['password']               = xbmcPwd
+    defaultConfig['transmission'] = {}
 
     if transauth:
-        defaultConfig['transmission'] = {}
         defaultConfig['transmission']['username']         = transuser
         defaultConfig['transmission']['password']         = transpwd
-        defaultConfig['transmission']['directory']        = pSickPotatoHeadCompleteMov
         defaultConfig['transmission']['host']             = 'localhost:9091'
 
     if cpfirstLaunch:
+        defaultConfig['transmission']['directory']        = pSickPotatoHeadCompleteMov
         defaultConfig['xbmc']['xbmc_update_library']      = '1'
         defaultConfig['xbmc']['xbmc_update_full']         = '1'
         defaultConfig['xbmc']['xbmc_notify_onsnatch']     = '1'
@@ -297,6 +291,9 @@ try:
         defaultConfig['mysterbin']['enabled']             = '0'
         defaultConfig['core']['permission_folder']        = '0644'
         defaultConfig['core']['permission_file']          = '0644'
+        defaultConfig['core']['show_wizard']            = '0'
+        defaultConfig['core']['debug']                  = '0'
+        defaultConfig['core']['development']            = '0'
         defaultConfig['searcher'] = {}
         defaultConfig['searcher']['preferred_method']     = 'torrent'
 
@@ -335,9 +332,9 @@ try:
     defaultConfig['XBMC']['xbmc_host']                    = 'localhost:' + xbmcPort
     defaultConfig['XBMC']['xbmc_username']                = xbmcUser
     defaultConfig['XBMC']['xbmc_password']                = xbmcPwd
+    defaultConfig['Transmission'] = {}
 
     if transauth:
-        defaultConfig['Transmission'] = {}
         defaultConfig['Transmission']['transmission_username'] = transuser
         defaultConfig['Transmission']['transmission_password'] = transpwd
         defaultConfig['Transmission']['transmission_host']     = 'http://localhost:9091'
