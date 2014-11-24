@@ -77,10 +77,10 @@ create_dir(pSickPotatoHeadWatchDir)
 # Transmission-Daemon
 transauth = False
 try:
-   transmissionaddon = xbmcaddon.Addon(id='service.downloadmanager.transmission')
-   transauth = (transmissionaddon.getSetting('TRANSMISSION_AUTH').lower() == 'true')
+    transmissionaddon = xbmcaddon.Addon(id='service.downloadmanager.transmission')
+    transauth = (transmissionaddon.getSetting('TRANSMISSION_AUTH').lower() == 'true')
 
-   if transauth:
+    if transauth:
         xbmc.log('SickPotatoHead: Transmission Authentication Enabled', level=xbmc.LOGDEBUG)
         transuser = (transmissionaddon.getSetting('TRANSMISSION_USER').decode('utf-8'))
         if transuser == '':
