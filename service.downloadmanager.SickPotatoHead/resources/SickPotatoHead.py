@@ -50,7 +50,7 @@ pPylib                = xbmc.translatePath(__addonpath__ + '/resources/lib')
 
 # service commands
 sickBeard             = ['python', xbmc.translatePath(__addonpath__ + '/resources/SickBeard/SickBeard.py'),
-                         '--daemon', '--datadir', __addonhome__, '--config', pSickBeardSettings]
+                         '--daemon', '--datadir', __addonhome__,'--pidfile=/run/sickbeard.pid', '--config', pSickBeardSettings]
 couchPotatoServer     = ['python', xbmc.translatePath(__addonpath__ + '/resources/CouchPotatoServer/CouchPotato.py'),
                          '--daemon', '--pid_file', xbmc.translatePath(__addonhome__ + 'couchpotato.pid'),
                          '--config_file', pCouchPotatoServerSettings]
