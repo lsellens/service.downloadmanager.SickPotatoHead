@@ -2,9 +2,9 @@
 - removed bytecode for multiple interpreter compatibility
 - added binaries for armv7l devices
 - removed openelec requirement should work on all linux xbmc installs
-- update to CouchPotatoServer-e0cc86b
-- update to HeadPhones-f15ad44
-- update to SickRage-6270f25
+- update to CouchPotatoServer-build/2.6.1
+- update to HeadPhones-v0.5
+- update to SickRage-v3.1.0
 
 1.4.4
 - update to CouchPotatoServer-2252ed7
