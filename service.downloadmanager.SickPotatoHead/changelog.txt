@@ -1,3 +1,7 @@
+1.4.6
+- update to sickrage-v3.9.2
+- moved pidfiles to /var/run/
+
 1.4.5
 - removed bytecode for multiple interpreter compatibility
 - added binaries for armv7l devices
