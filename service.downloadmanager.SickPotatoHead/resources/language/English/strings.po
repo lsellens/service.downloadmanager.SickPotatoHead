@@ -15,8 +15,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#1000"
-msgid "SickPotatoHead"
-msgstr "SickPotatoHead"
+msgid "General"
+msgstr "General"
 
 msgctxt "#1010"
 msgid "User Settings"
