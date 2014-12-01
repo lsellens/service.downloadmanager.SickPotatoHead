@@ -6,7 +6,7 @@ import time
 
 __scriptname__ = "SickPotatoHead"
 __author__     = "lsellens"
-__url__        = "http://code.google.com/p/repository-lsellens/"
+__url__        = "http://lsellens.openelec.tv"
 
 # Launch programs
 sickpotatohead.main()
