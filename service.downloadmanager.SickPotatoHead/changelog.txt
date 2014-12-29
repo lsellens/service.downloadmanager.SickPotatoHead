@@ -1,3 +1,8 @@
+1.4.7
+- updated translations
+- update to HeadPhones-v0.5.2
+- update to SickRage-v4.0.9
+
 1.4.6
 - update to sickrage-v3.9.2
 - moved pidfiles to /var/run/
