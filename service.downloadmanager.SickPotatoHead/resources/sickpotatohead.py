@@ -138,16 +138,7 @@ def main():
         if xbmcvfs.exists(xbmc.translatePath(ppylib + '/arch.armv7l')):
             xbmcvfs.delete(xbmc.translatePath(ppylib + '/arch.armv7l'))
     
-        pnamemapper                   = xbmc.translatePath(ppylib + '/Cheetah/_namemapper.so')
         punrar                        = xbmc.translatePath(__addonpath__ + '/bin/unrar')
-    
-        try:
-            fnamemapper                   = xbmc.translatePath(ppylib + '/multiarch/_namemapper.so.' + parch)
-            xbmcvfs.copy(fnamemapper, pnamemapper)
-            xbmc.log('SickPotatoHead: Copied _namemapper.so for ' + parch, level=xbmc.LOGDEBUG)
-        except Exception, e:
-            xbmc.log('SickPotatoHead: Error Copying _namemapper.so for ' + parch, level=xbmc.LOGERROR)
-            xbmc.log(str(e), level=xbmc.LOGERROR)
     
         try:
             funrar                        = xbmc.translatePath(ppylib + '/multiarch/unrar.' + parch)

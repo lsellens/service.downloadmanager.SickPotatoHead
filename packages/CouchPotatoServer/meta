@@ -1,3 +1,3 @@
 PKG_NAME="CouchPotatoServer"
-PKG_VERSION="c295b34"
+PKG_VERSION="build/3.0.1"
 PKG_SITE="http://github.com/RuudBurger/CouchPotatoServer"
