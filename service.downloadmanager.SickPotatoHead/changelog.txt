@@ -1,3 +1,10 @@
+1.5.3
+- update to unrar 5.30 beta4
+
+1.5.2
+- update to SickRage-v4.0.66
+- added distutils
+
 1.5.1
 - update to HeadPhones-v0.5.9
 - update to SickRage-v4.0.60
