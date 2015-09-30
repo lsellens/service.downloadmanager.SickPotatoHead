@@ -22,7 +22,7 @@ if [ "$RESTART_ON_RESUME" == "true" ] ; then
       progress "Restarting SickPotatoHead for wakeup..."
       if [ -f "$LOCKFILE" ] ; then
         rm -rf "$LOCKFILE"
-        python $HOME/.xbmc/addons/service.downloadmanager.SickPotatoHead/service.py
+        python $HOME/.kodi/addons/service.downloadmanager.SickPotatoHead/service.py
       fi
       ;;
     *) exit $NA

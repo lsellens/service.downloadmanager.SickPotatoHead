@@ -6,19 +6,29 @@ cd mkpkg
 echo "building $PKG_NAME..."
 echo "getting sources..."
   if [ ! -d build.$PKG_NAME.git ]; then
-    git clone $PKG_SITE.git build.$PKG_NAME.git
+    git clone --recursive $PKG_SITE.git build.$PKG_NAME.git
   fi
 
   cd build.$PKG_NAME.git
     git checkout master
     git pull
+    git submodule init
     git checkout $PKG_VERSION
+    git submodule update
     GIT_REV=`git log -n1 --format=%h`
   cd ..
 
   echo "copying sources..."
    rm -rf $PKG_NAME-$GIT_REV
    cp -R build.$PKG_NAME.git $PKG_NAME-$GIT_REV
+
+for i in patches/$PKG_NAME-*.patch; do
+  if [ -f "$i" ]; then
+    echo "patching sources..."
+    echo $i
+    cat $i | patch -p1 -d `echo "$PKG_NAME-$GIT_REV" | cut -f1 -d\ `
+  fi
+done
 
   echo "cleaning sources..."
    rm -rf $PKG_NAME-$GIT_REV/.git* $PKG_NAME-$GIT_REV/.travis.yml $PKG_NAME-$GIT_REV/runscripts $PKG_NAME-$GIT_REV/COPYING.txt $PKG_NAME-$GIT_REV/*.md $PKG_NAME-$GIT_REV/autoProcessTV/autoProcessTV.cfg.sample $PKG_NAME-$GIT_REV/requirements.txt $PKG_NAME-$GIT_REV/TODO.txt

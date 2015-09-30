@@ -20,6 +20,14 @@ echo "getting sources..."
    rm -rf $PKG_NAME-$GIT_REV
    cp -R build.$PKG_NAME.git $PKG_NAME-$GIT_REV
 
+for i in patches/$PKG_NAME-*.patch; do
+  if [ -f "$i" ]; then
+    echo "patching sources..."
+    echo $i
+    cat $i | patch -p1 -d `echo "$PKG_NAME-$GIT_REV" | cut -f1 -d\ `
+  fi
+done
+
   echo "cleaning sources..."
    rm -rf $PKG_NAME-$GIT_REV/.git* $PKG_NAME-$GIT_REV/init* $PKG_NAME-$GIT_REV/TODO $PKG_NAME-$GIT_REV/README.md $PKG_NAME-$GIT_REV/COPYING $PKG_NAME-$GIT_REV/API_REFERENCE $PKG_NAME-$GIT_REV/html5lib/tests
 
