@@ -137,18 +137,84 @@ def main():
             xbmcvfs.delete(xbmc.translatePath(ppylib + '/arch.armv6l'))
         if xbmcvfs.exists(xbmc.translatePath(ppylib + '/arch.armv7l')):
             xbmcvfs.delete(xbmc.translatePath(ppylib + '/arch.armv7l'))
-    
+        
+        pssl                          = xbmc.translatePath(__addonpath__ + '/lib/OpenSSL/SSL.so')
+        prand                         = xbmc.translatePath(__addonpath__ + '/lib/OpenSSL/rand.so')
+        pcrypto                       = xbmc.translatePath(__addonpath__ + '/lib/OpenSSL/crypto.so')
+        plibcrypto                    = xbmc.translatePath(__addonpath__ + '/lib/OpenSSL/libcrypto.so.1.0.0')
+        plibssl                       = xbmc.translatePath(__addonpath__ + '/lib/OpenSSL/libssl.so.1.0.0')
+        plibcryptolk                  = xbmc.translatePath(__addonpath__ + '/lib/libcrypto.so.1.0.0')
+        plibssllk                     = xbmc.translatePath(__addonpath__ + '/lib/libssl.so.1.0.0')
         punrar                        = xbmc.translatePath(__addonpath__ + '/bin/unrar')
-    
+        
         try:
-            funrar                        = xbmc.translatePath(ppylib + '/multiarch/unrar.' + parch)
+            if xbmcvfs.exists(pssl):
+                xbmcvfs.delete(pssl)
+            fssl = xbmc.translatePath(ppylib + '/lib/multiarch/SSL.so.' + parch)
+            xbmcvfs.copy(fssl, pssl)
+            os.chmod(pssl, 0755)
+            xbmc.log('SickPotatoHead: Copied SSL.so for ' + parch, level=xbmc.LOGDEBUG)
+        except Exception, e:
+            xbmc.log('SickPotatoHead: Error Copying SSL.so for ' + parch, level=xbmc.LOGERROR)
+            xbmc.log(str(e), level=xbmc.LOGERROR)
+        
+        try:
+            if xbmcvfs.exists(prand):
+                xbmcvfs.delete(prand)
+            frand = xbmc.translatePath(ppylib + '/lib/multiarch/rand.so.' + parch)
+            xbmcvfs.copy(frand, prand)
+            os.chmod(prand, 0755)
+            xbmc.log('SickPotatoHead: Copied rand.so for ' + parch, level=xbmc.LOGDEBUG)
+        except Exception, e:
+            xbmc.log('SickPotatoHead: Error Copying rand.so for ' + parch, level=xbmc.LOGERROR)
+            xbmc.log(str(e), level=xbmc.LOGERROR)
+        
+        try:
+            if xbmcvfs.exists(pcrypto):
+                xbmcvfs.delete(pcrypto)
+            fcrypto = xbmc.translatePath(ppylib + '/lib/multiarch/crypto.so.' + parch)
+            xbmcvfs.copy(fcrypto, pcrypto)
+            os.chmod(pcrypto, 0755)
+            xbmc.log('SickPotatoHead: Copied crypto.so for ' + parch, level=xbmc.LOGDEBUG)
+        except Exception, e:
+            xbmc.log('SickPotatoHead: Error Copying crypto.so for ' + parch, level=xbmc.LOGERROR)
+            xbmc.log(str(e), level=xbmc.LOGERROR)
+        
+        try:
+            if xbmcvfs.exists(plibcrypto):
+                xbmcvfs.delete(plibcrypto)
+            flibcrypto = xbmc.translatePath(ppylib + '/lib/multiarch/libcrypto.so.1.0.0.' + parch)
+            xbmcvfs.copy(flibcrypto, plibcrypto)
+            os.chmod(plibcrypto, 0755)
+            os.symlink(plibcrypto, plibcryptolk)
+            xbmc.log('SickPotatoHead: Copied libcrypto for ' + parch, level=xbmc.LOGDEBUG)
+        except Exception, e:
+            xbmc.log('SickPotatoHead: Error Copying libcrypto for ' + parch, level=xbmc.LOGERROR)
+            xbmc.log(str(e), level=xbmc.LOGERROR)
+        
+        try:
+            if xbmcvfs.exists(plibssl):
+                xbmcvfs.delete(plibssl)
+            flibssl = xbmc.translatePath(ppylib + '/lib/multiarch/libssl.so.1.0.0.' + parch)
+            xbmcvfs.copy(flibssl, plibssl)
+            os.chmod(plibssl, 0755)
+            os.symlink(plibssl, plibssllk)
+            xbmc.log('SickPotatoHead: Copied libssl for ' + parch, level=xbmc.LOGDEBUG)
+        except Exception, e:
+            xbmc.log('SickPotatoHead: Error Copying libssl for ' + parch, level=xbmc.LOGERROR)
+            xbmc.log(str(e), level=xbmc.LOGERROR)
+        
+        try:
+            if xbmcvfs.exists(punrar):
+                xbmcvfs.delete(punrar)
+            funrar = xbmc.translatePath(ppylib + '/lib/multiarch/unrar.' + parch)
             xbmcvfs.copy(funrar, punrar)
             os.chmod(punrar, 0755)
             xbmc.log('SickPotatoHead: Copied unrar for ' + parch, level=xbmc.LOGDEBUG)
         except Exception, e:
             xbmc.log('SickPotatoHead: Error Copying unrar for ' + parch, level=xbmc.LOGERROR)
             xbmc.log(str(e), level=xbmc.LOGERROR)
-    
+        
         xbmcvfs.File(xbmc.translatePath(ppylib + '/arch.' + parch), 'w').close()
     
     os.environ['PYTHONPATH'] = str(os.environ.get('PYTHONPATH')) + ':' + ppylib
