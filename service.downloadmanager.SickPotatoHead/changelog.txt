@@ -1,3 +1,6 @@
+1.5.5
+- 2nd attempt to fix ssl
+
 1.5.4
 - fix ssl
 - update to SickRage-v4.0.69.1
