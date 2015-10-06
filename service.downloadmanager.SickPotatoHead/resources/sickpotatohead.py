@@ -138,13 +138,13 @@ def main():
         if xbmcvfs.exists(xbmc.translatePath(ppylib + '/arch.armv7l')):
             xbmcvfs.delete(xbmc.translatePath(ppylib + '/arch.armv7l'))
         
-        pssl                          = xbmc.translatePath(__addonpath__ + 'resources/lib/OpenSSL/SSL.so')
-        prand                         = xbmc.translatePath(__addonpath__ + 'resources/lib/OpenSSL/rand.so')
-        pcrypto                       = xbmc.translatePath(__addonpath__ + 'resources/lib/OpenSSL/crypto.so')
-        plibcrypto                    = xbmc.translatePath(__addonpath__ + 'resources/lib/OpenSSL/libcrypto.so.1.0.0')
-        plibssl                       = xbmc.translatePath(__addonpath__ + 'resources/lib/OpenSSL/libssl.so.1.0.0')
-        plibcryptolk                  = xbmc.translatePath(__addonpath__ + 'resources/lib/libcrypto.so.1.0.0')
-        plibssllk                     = xbmc.translatePath(__addonpath__ + 'resources/lib/libssl.so.1.0.0')
+        pssl                          = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/SSL.so')
+        prand                         = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/rand.so')
+        pcrypto                       = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/crypto.so')
+        plibcrypto                    = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/libcrypto.so.1.0.0')
+        plibssl                       = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/libssl.so.1.0.0')
+        plibcryptolk                  = xbmc.translatePath(__addonpath__ + '/resources/lib/libcrypto.so.1.0.0')
+        plibssllk                     = xbmc.translatePath(__addonpath__ + '/resources/lib/libssl.so.1.0.0')
         punrar                        = xbmc.translatePath(__addonpath__ + '/bin/unrar')
         
         try:
