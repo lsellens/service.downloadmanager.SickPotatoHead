@@ -1,4 +1,4 @@
 PKG_NAME="service.downloadmanager.SickPotatoHead"
 PKG_VERSION="1.5"
-PKG_REV="5~beta2"
+PKG_REV="5"
 PKG_DEPENDS="SickBeard Headphones CouchPotatoServer"
