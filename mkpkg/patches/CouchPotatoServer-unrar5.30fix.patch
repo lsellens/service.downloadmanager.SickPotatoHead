@@ -1,0 +1,26 @@
+--- build.CouchPotatoServer.git/libs/unrar2/unix.py	2015-09-29 21:49:38.617350964 -0500
++++ patches/unix.py	2015-10-06 11:37:37.669861816 -0500
+@@ -165,7 +165,10 @@
+                     data['size'] = int(fields[0])
+                     attr = fields[5]
+                     data['isdir'] = 'd' in attr.lower()
+-                    data['datetime'] = time.strptime(fields[3] + " " + fields[4], '%d-%m-%y %H:%M')
++                    try:
++                        data['datetime'] = time.strptime(fields[3]+" "+fields[4], '%d-%m-%y %H:%M')
++                    except ValueError:
++                        data['datetime'] = time.strptime(fields[3]+" "+fields[4], '%Y-%m-%d %H:%M')
+                     data['comment'] = None
+                     yield data
+                     accum = []
+@@ -180,7 +183,10 @@
+                 data['size'] = int(fields[1])
+                 attr = fields[0]
+                 data['isdir'] = 'd' in attr.lower()
+-                data['datetime'] = time.strptime(fields[2] + " " + fields[3], '%d-%m-%y %H:%M')
++                try:
++                    data['datetime'] = time.strptime(fields[2]+" "+fields[3], '%d-%m-%y %H:%M')
++                except ValueError:
++                    data['datetime'] = time.strptime(fields[2]+" "+fields[3], '%Y-%m-%d %H:%M')
+                 data['comment'] = None
+                 yield data
+                 i += 1
