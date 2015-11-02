@@ -1,3 +1,8 @@
+1.5.7
+- update to SickRage-v4.0.76.2
+- removed mako, its now included in sickrage
+- added lxml for couchpotato
+
 1.5.6
 - update to SickRage-v4.0.73.1
 

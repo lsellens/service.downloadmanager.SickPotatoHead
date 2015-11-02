@@ -137,7 +137,8 @@ def main():
             xbmcvfs.delete(xbmc.translatePath(ppylib + '/arch.armv6l'))
         if xbmcvfs.exists(xbmc.translatePath(ppylib + '/arch.armv7l')):
             xbmcvfs.delete(xbmc.translatePath(ppylib + '/arch.armv7l'))
-        
+        pobjectify                    = xbmc.translatePath(__addonpath__ + '/resources/lib/lxml/objectify.so')
+        petree                        = xbmc.translatePath(__addonpath__ + '/resources/lib/lxml/etree.so')
         pssl                          = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/SSL.so')
         prand                         = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/rand.so')
         pcrypto                       = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/crypto.so')
@@ -146,6 +147,28 @@ def main():
         plibcryptolk                  = xbmc.translatePath(__addonpath__ + '/resources/lib/libcrypto.so.1.0.0')
         plibssllk                     = xbmc.translatePath(__addonpath__ + '/resources/lib/libssl.so.1.0.0')
         punrar                        = xbmc.translatePath(__addonpath__ + '/bin/unrar')
+        
+        try:
+            if xbmcvfs.exists(pobjectify):
+                xbmcvfs.delete(pobjectify)
+            fobjectify = xbmc.translatePath(ppylib + '/multiarch/objectify.so.' + parch)
+            xbmcvfs.copy(fobjectify, pobjectify)
+            os.chmod(pobjectify, 0755)
+            xbmc.log('SickPotatoHead: Copied objectify.so for ' + parch, level=xbmc.LOGDEBUG)
+        except Exception, e:
+            xbmc.log('SickPotatoHead: Error Copying objectify.so for ' + parch, level=xbmc.LOGERROR)
+            xbmc.log(str(e), level=xbmc.LOGERROR)
+        
+        try:
+            if xbmcvfs.exists(petree):
+                xbmcvfs.delete(petree)
+            fetree = xbmc.translatePath(ppylib + '/multiarch/etree.so.' + parch)
+            xbmcvfs.copy(fetree, petree)
+            os.chmod(petree, 0755)
+            xbmc.log('SickPotatoHead: Copied etree.so for ' + parch, level=xbmc.LOGDEBUG)
+        except Exception, e:
+            xbmc.log('SickPotatoHead: Error Copying etree.so for ' + parch, level=xbmc.LOGERROR)
+            xbmc.log(str(e), level=xbmc.LOGERROR)
         
         try:
             if xbmcvfs.exists(pssl):
