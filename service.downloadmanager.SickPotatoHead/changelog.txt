@@ -1,3 +1,7 @@
+1.5.8
+- added i386 binaries for lxml
+- update to SickRage-v4.1.0.2
+
 1.5.7
 - update to SickRage-v4.0.76.2
 - removed mako, its now included in sickrage
