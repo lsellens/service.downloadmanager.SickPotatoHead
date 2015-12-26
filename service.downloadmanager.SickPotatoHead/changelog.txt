@@ -1,3 +1,7 @@
+1.6.1
+- update to SickRage-v5.0
+- update to CouchPotatoServer-de141aa
+
 1.6.0
 - update to SickRage-v4.2.1.04
 
