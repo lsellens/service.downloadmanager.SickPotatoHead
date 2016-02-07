@@ -241,6 +241,7 @@ def main():
         xbmcvfs.File(xbmc.translatePath(ppylib + '/arch.' + parch), 'w').close()
     
     os.environ['PYTHONPATH'] = str(os.environ.get('PYTHONPATH')) + ':' + ppylib
+    os.environ['LD_LIBRARY_PATH'] = str(os.environ.get('LD_LIBRARY_PATH')) + ':' + ppylib
     os.environ['PYTHONPATH'] = str(os.environ.get('PYTHONPATH')) + ':' + (xbmc.translatePath(__addonpath__ + '/bin'))
     
     # SickBeard start
