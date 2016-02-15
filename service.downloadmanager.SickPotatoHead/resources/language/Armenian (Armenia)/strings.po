@@ -1,55 +1,56 @@
 # XBMC Media Center language file
 # Translators:
+# David Karapetyan <david090393@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenELEC-addons\n"
 "Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
 "POT-Creation-Date: 2014-04-03 02:08+0000\n"
-"PO-Revision-Date: 2014-04-03 02:11+0000\n"
+"PO-Revision-Date: 2015-05-29 07:14+0000\n"
 "Last-Translator: lsellens <lsellens@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/openelec-addons/language/tr/)\n"
+"Language-Team: Armenian (Armenia) (http://www.transifex.com/lsellens/openelec-addons/language/hy_AM/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: hy_AM\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#1000"
 msgid "General"
-msgstr "Genel"
+msgstr "Գլխավոր"
 
 msgctxt "#1010"
 msgid "User Settings"
-msgstr "Kullanıcı Ayarları"
+msgstr "Օգտվողի կարգավորումներ"
 
 msgctxt "#1022"
 msgid "Username"
-msgstr "Kullanıcı adı"
+msgstr "Մուտքանուն"
 
 msgctxt "#1023"
 msgid "Password"
-msgstr "Parola"
+msgstr "Գաղտնաբառ"
 
 msgctxt "#1024"
 msgid "Enable Sickbeard on Port: 8082"
-msgstr "Sickbeard'ı Etkinleştir"
+msgstr "Միացնել Sickbeard-ը 8082 պորտի վրա"
 
 msgctxt "#1025"
 msgid "Enable Couchpotato on Port: 8083"
-msgstr "Couchpotato'yu Etkinleştir"
+msgstr "Միացնել Couchpotato-ն 8083 պորտի վրա"
 
 msgctxt "#1026"
 msgid "Enable Headphones on Port: 8084"
-msgstr "Headphones'u Etkinleştir"
+msgstr "Միացնել Headphones-ը 8084 պորտի վրա"
 
 msgctxt "#2010"
 msgid "Network Settings"
-msgstr "Ağ Ayarları"
+msgstr "Ցանցային կարգավորումներ"
 
 msgctxt "#2021"
 msgid "Allowed IP addresses"
-msgstr "İzin verilen IP adresleri"
+msgstr "Թույլատրված IP հասցեներ"
 
 msgctxt "#2022"
 msgid "Restart on suspend / resume"
-msgstr ""
+msgstr "Վերագործարկել կասեցման / վերսկսման ժամանակ"

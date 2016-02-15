@@ -16,8 +16,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#1000"
-msgid "SickPotatoHead"
-msgstr "SickPotatoHead"
+msgid "General"
+msgstr "General"
 
 msgctxt "#1010"
 msgid "User Settings"
@@ -33,15 +33,15 @@ msgstr "Contraseña"
 
 msgctxt "#1024"
 msgid "Enable Sickbeard on Port: 8082"
-msgstr "Activar Sickbeard"
+msgstr "Habilitar Sickbeard en el Puerto: 8082"
 
 msgctxt "#1025"
 msgid "Enable Couchpotato on Port: 8083"
-msgstr "Activar Couchpotato"
+msgstr "Habilitar Couchpotato en el Puerto: 8083"
 
 msgctxt "#1026"
 msgid "Enable Headphones on Port: 8084"
-msgstr "Activar Headphones"
+msgstr "Habilitar Headphones en el Puerto: 8084"
 
 msgctxt "#2010"
 msgid "Network Settings"

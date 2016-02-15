@@ -1,55 +1,56 @@
 # XBMC Media Center language file
 # Translators:
+# Lucas Mindêllo de Andrade <lucas@mindello.com.br>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenELEC-addons\n"
 "Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
 "POT-Creation-Date: 2014-04-03 02:08+0000\n"
-"PO-Revision-Date: 2014-04-03 02:11+0000\n"
-"Last-Translator: lsellens <lsellens@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/openelec-addons/language/tr/)\n"
+"PO-Revision-Date: 2015-08-11 15:23+0000\n"
+"Last-Translator: Lucas Mindêllo de Andrade <lucas@mindello.com.br>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/lsellens/openelec-addons/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: tr\n"
+"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgctxt "#1000"
 msgid "General"
-msgstr "Genel"
+msgstr "Geral"
 
 msgctxt "#1010"
 msgid "User Settings"
-msgstr "Kullanıcı Ayarları"
+msgstr "Configurações de usuário"
 
 msgctxt "#1022"
 msgid "Username"
-msgstr "Kullanıcı adı"
+msgstr "Usuário"
 
 msgctxt "#1023"
 msgid "Password"
-msgstr "Parola"
+msgstr "Senha"
 
 msgctxt "#1024"
 msgid "Enable Sickbeard on Port: 8082"
-msgstr "Sickbeard'ı Etkinleştir"
+msgstr "Habilitar Sickbeard na porta: 8082"
 
 msgctxt "#1025"
 msgid "Enable Couchpotato on Port: 8083"
-msgstr "Couchpotato'yu Etkinleştir"
+msgstr "Habilitar Couchpotato na porta: 8083"
 
 msgctxt "#1026"
 msgid "Enable Headphones on Port: 8084"
-msgstr "Headphones'u Etkinleştir"
+msgstr "Habilitar Headphones na porta: 8084"
 
 msgctxt "#2010"
 msgid "Network Settings"
-msgstr "Ağ Ayarları"
+msgstr "Configurações de rede"
 
 msgctxt "#2021"
 msgid "Allowed IP addresses"
-msgstr "İzin verilen IP adresleri"
+msgstr "Endereços IP permitidos"
 
 msgctxt "#2022"
 msgid "Restart on suspend / resume"
-msgstr ""
+msgstr "Reiniciar ao suspender / resumir"

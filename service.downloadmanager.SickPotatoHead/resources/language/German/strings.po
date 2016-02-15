@@ -41,7 +41,7 @@ msgstr "Couchpotato aktivieren auf Port: 8083"
 
 msgctxt "#1026"
 msgid "Enable Headphones on Port: 8084"
-msgstr "Kopfhörer aktivieren auf Port: 8084"
+msgstr "Headphones aktivieren auf Port: 8084"
 
 msgctxt "#2010"
 msgid "Network Settings"
