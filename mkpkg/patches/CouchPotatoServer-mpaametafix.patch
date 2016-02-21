@@ -1,0 +1,19 @@
+--- build.CouchPotatoServer.git/couchpotato/core/media/movie/providers/metadata/xbmc.py	2015-09-29 21:49:38.529350531 -0500
++++ patches/xbmc.py	2016-02-10 12:50:12.568603718 -0600
+@@ -84,8 +84,15 @@
+         except:
+             pass
+ 
++        # mpaa
++        try:
++            mpaa = SubElement(nfoxml, 'mpaa')
++            mpaa.text = toUnicode('Rated %s' % movie_info.get('mpaa'))
++        except:
++            pass
++
+         # Other values
+-        types = ['year', 'mpaa', 'originaltitle:original_title', 'outline', 'plot', 'tagline', 'premiered:released']
++        types = ['year', 'originaltitle:original_title', 'outline', 'plot', 'tagline', 'premiered:released']
+         for type in types:
+ 
+             if ':' in type:
