@@ -309,7 +309,8 @@ def main():
         # ----------------
         if sickbeard_launch:
             xbmc.log('SickPotatoHead: Launching SickBeard...', level=xbmc.LOGDEBUG)
-            subprocess.call(sickbeard, close_fds=True)
+            with open(__addonhome__ + 'logs/sbdebug.log', "wb") as out, open (__addonhome__ + 'logs/sberror.log', "wb") as err:
+                subprocess.Popen(sickbeard, close_fds=True, stdout=out, stderr=err)
             xbmc.log('SickPotatoHead: ...done', level=xbmc.LOGDEBUG)
     except Exception, e:
         xbmc.log('SickPotatoHead: SickBeard exception occurred', level=xbmc.LOGERROR)
@@ -386,7 +387,8 @@ def main():
         # ------------------
         if couchpotato_launch:
             xbmc.log('SickPotatoHead: Launching CouchPotatoServer...', level=xbmc.LOGDEBUG)
-            subprocess.call(couchpotatoserver, close_fds=True)
+            with open(__addonhome__ + 'logs/cpdebug.log', "wb") as out, open (__addonhome__ + 'logs/cperror.log', "wb") as err:
+                subprocess.Popen(couchpotatoserver, close_fds=True, stdout=out, stderr=err)
             xbmc.log('SickPotatoHead: ...done', level=xbmc.LOGDEBUG)
     except Exception, e:
         xbmc.log('SickPotatoHead: CouchPotatoServer exception occurred', level=xbmc.LOGERROR)
@@ -443,7 +445,8 @@ def main():
         # -----------------
         if headphones_launch:
             xbmc.log('SickPotatoHead: Launching Headphones...', level=xbmc.LOGDEBUG)
-            subprocess.call(headphones, close_fds=True)
+            with open(__addonhome__ + 'logs/hpdebug.log', "wb") as out, open (__addonhome__ + 'logs/hperror.log', "wb") as err:
+                subprocess.Popen(headphones, close_fds=True, stdout=out, stderr=err)
             xbmc.log('SickPotatoHead: ...done', level=xbmc.LOGDEBUG)
     except Exception, e:
         xbmc.log('SickPotatoHead: Headphones exception occurred', level=xbmc.LOGERROR)
