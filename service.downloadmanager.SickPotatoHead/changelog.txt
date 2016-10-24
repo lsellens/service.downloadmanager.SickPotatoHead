@@ -2,7 +2,6 @@
 - update to SickRage-8bf53e8
 - update to CouchPotatoServer-4a0999d
 - update to HeadPhones-v0.5.16
-- improved logging
 
 1.6.7
 - update to SickRage-a70d27a
