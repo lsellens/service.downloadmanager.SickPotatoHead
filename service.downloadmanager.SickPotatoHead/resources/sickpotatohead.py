@@ -259,11 +259,11 @@ def main():
         defaultconfig['General']['web_password']               = pwd
         defaultconfig['General']['cache_dir']                  = __addonhome__ + 'sbcache'
         defaultconfig['General']['log_dir']                    = __addonhome__ + 'logs'
-        defaultconfig['XBMC'] = {}
-        defaultconfig['XBMC']['use_xbmc']                      = '1'
-        defaultconfig['XBMC']['xbmc_host']                     = 'localhost:' + xbmcport
-        defaultconfig['XBMC']['xbmc_username']                 = xbmcuser
-        defaultconfig['XBMC']['xbmc_password']                 = xbmcpwd
+        defaultconfig['KODI'] = {}
+        defaultconfig['KODI']['use_kodi']                      = '1'
+        defaultconfig['KODI']['kodi_host']                     = 'localhost:' + xbmcport
+        defaultconfig['KODI']['kodi_username']                 = xbmcuser
+        defaultconfig['KODI']['kodi_password']                 = xbmcpwd
         defaultconfig['TORRENT'] = {}
     
         if transauth:
@@ -274,7 +274,7 @@ def main():
         if sbfirstlaunch:
             defaultconfig['TORRENT']['torrent_path']               = psickpotatoheadcompletetv
             defaultconfig['General']['tv_download_dir']            = psickpotatoheadcomplete
-            defaultconfig['General']['metadata_xbmc_12plus']       = '0|0|0|0|0|0|0|0|0|0'
+            defaultconfig['General']['metadata_kodi_12plus']       = '0|0|0|0|0|0|0|0|0|0'
             defaultconfig['General']['keep_processed_dir']         = '0'
             defaultconfig['General']['use_banner']                 = '1'
             defaultconfig['General']['rename_episodes']            = '1'
@@ -297,10 +297,10 @@ def main():
             defaultconfig['THEPIRATEBAY']['thepiratebay']          = '1'
             defaultconfig['Womble'] = {}
             defaultconfig['Womble']['womble']                      = '0'
-            defaultconfig['XBMC']['xbmc_notify_ondownload']        = '1'
-            defaultconfig['XBMC']['xbmc_notify_onsnatch']          = '1'
-            defaultconfig['XBMC']['xbmc_update_library']           = '1'
-            defaultconfig['XBMC']['xbmc_update_full']              = '1'
+            defaultconfig['KODI']['kodi_notify_ondownload']        = '1'
+            defaultconfig['KODI']['kodi_notify_onsnatch']          = '1'
+            defaultconfig['KODI']['kodi_update_library']           = '1'
+            defaultconfig['KODI']['kodi_update_full']              = '1'
     
         sickbeardconfig.merge(defaultconfig)
         sickbeardconfig.write()
