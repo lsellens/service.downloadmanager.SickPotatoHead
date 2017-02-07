@@ -1,3 +1,17 @@
+1.6.9
+- removed i686 biniaries
+- update to SickRage-v2017.02.2-1
+- update to CouchPotatoServer-b538f9a
+- update to HeadPhones-v0.5.18
+- update to lxml-3.7.1
+- update to pyOpenSSL-16.2.0
+- update to openssl-1.0.2j
+- update to unrar-5.40
+- added cryptography-1.7.1
+- added enum34-1.1.6
+- added cffi-1.9.1
+- added libffi.so.6.0.4
+
 1.6.8
 - update to SickRage-8bf53e8
 - update to CouchPotatoServer-4a0999d

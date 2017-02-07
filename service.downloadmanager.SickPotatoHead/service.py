@@ -5,7 +5,7 @@ import xbmc
 
 __scriptname__ = "SickPotatoHead"
 __author__     = "lsellens"
-__url__        = "http://lsellens.openelec.tv"
+__url__        = "https://github.com/lsellens/service.downloadmanager.SickPotatoHead"
 
 # Launch programs
 sickpotatohead.main()

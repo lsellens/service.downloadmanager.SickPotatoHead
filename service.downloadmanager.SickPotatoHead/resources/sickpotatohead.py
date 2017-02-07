@@ -129,24 +129,25 @@ def main():
     if not xbmcvfs.exists(xbmc.translatePath(ppylib + '/arch.' + parch)):
         xbmc.log('SickPotatoHead: Setting up binaries:', level=xbmc.LOGDEBUG)
     
-        if xbmcvfs.exists(xbmc.translatePath(ppylib + '/arch.i686')):
-            xbmcvfs.delete(xbmc.translatePath(ppylib + '/arch.i686'))
         if xbmcvfs.exists(xbmc.translatePath(ppylib + '/arch.x86_64')):
             xbmcvfs.delete(xbmc.translatePath(ppylib + '/arch.x86_64'))
         if xbmcvfs.exists(xbmc.translatePath(ppylib + '/arch.armv6l')):
             xbmcvfs.delete(xbmc.translatePath(ppylib + '/arch.armv6l'))
         if xbmcvfs.exists(xbmc.translatePath(ppylib + '/arch.armv7l')):
             xbmcvfs.delete(xbmc.translatePath(ppylib + '/arch.armv7l'))
-        pobjectify                    = xbmc.translatePath(__addonpath__ + '/resources/lib/lxml/objectify.so')
-        petree                        = xbmc.translatePath(__addonpath__ + '/resources/lib/lxml/etree.so')
-        pssl                          = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/SSL.so')
-        prand                         = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/rand.so')
-        pcrypto                       = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/crypto.so')
-        plibcrypto                    = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/libcrypto.so.1.0.0')
-        plibssl                       = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/libssl.so.1.0.0')
-        plibcryptolk                  = xbmc.translatePath(__addonpath__ + '/resources/lib/libcrypto.so.1.0.0')
-        plibssllk                     = xbmc.translatePath(__addonpath__ + '/resources/lib/libssl.so.1.0.0')
-        punrar                        = xbmc.translatePath(__addonpath__ + '/bin/unrar')
+        pobjectify       = xbmc.translatePath(__addonpath__ + '/resources/lib/lxml/objectify.so')
+        petree           = xbmc.translatePath(__addonpath__ + '/resources/lib/lxml/etree.so')
+        p_constant_time  = xbmc.translatePath(__addonpath__ + '/resources/lib/cryptography/hazmat/bindings/_constant_time.so')
+        p_openssl        = xbmc.translatePath(__addonpath__ + '/resources/lib/cryptography/hazmat/bindings/_openssl.so')
+        p_padding        = xbmc.translatePath(__addonpath__ + '/resources/lib/cryptography/hazmat/bindings/_padding.so')
+        plibcrypto       = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/libcrypto.so.1.0.0')
+        plibssl          = xbmc.translatePath(__addonpath__ + '/resources/lib/OpenSSL/libssl.so.1.0.0')
+        plibcryptolk     = xbmc.translatePath(__addonpath__ + '/resources/lib/libcrypto.so.1.0.0')
+        plibssllk        = xbmc.translatePath(__addonpath__ + '/resources/lib/libssl.so.1.0.0')
+        plibffi          = xbmc.translatePath(__addonpath__ + '/resources/lib/libffi.so.6.0.4')
+        plibffilk        = xbmc.translatePath(__addonpath__ + '/resources/lib/libffi.so.6')
+        p_cffi_backend   = xbmc.translatePath(__addonpath__ + '/resources/lib/_cffi_backend.so')
+        punrar           = xbmc.translatePath(__addonpath__ + '/bin/unrar')
         
         try:
             if xbmcvfs.exists(pobjectify):
@@ -171,36 +172,36 @@ def main():
             xbmc.log(str(e), level=xbmc.LOGERROR)
         
         try:
-            if xbmcvfs.exists(pssl):
-                xbmcvfs.delete(pssl)
-            fssl = xbmc.translatePath(ppylib + '/multiarch/SSL.so.' + parch)
-            xbmcvfs.copy(fssl, pssl)
-            os.chmod(pssl, 0755)
-            xbmc.log('SickPotatoHead: Copied SSL.so for ' + parch, level=xbmc.LOGDEBUG)
+            if xbmcvfs.exists(p_constant_time):
+                xbmcvfs.delete(p_constant_time)
+            f_constant_time = xbmc.translatePath(ppylib + '/multiarch/_constant_time.so.' + parch)
+            xbmcvfs.copy(f_constant_time, p_constant_time)
+            os.chmod(p_constant_time, 0755)
+            xbmc.log('SickPotatoHead: Copied _constant_time.so for ' + parch, level=xbmc.LOGDEBUG)
         except Exception, e:
-            xbmc.log('SickPotatoHead: Error Copying SSL.so for ' + parch, level=xbmc.LOGERROR)
+            xbmc.log('SickPotatoHead: Error Copying _constant_time.so for ' + parch, level=xbmc.LOGERROR)
             xbmc.log(str(e), level=xbmc.LOGERROR)
         
         try:
-            if xbmcvfs.exists(prand):
-                xbmcvfs.delete(prand)
-            frand = xbmc.translatePath(ppylib + '/multiarch/rand.so.' + parch)
-            xbmcvfs.copy(frand, prand)
-            os.chmod(prand, 0755)
-            xbmc.log('SickPotatoHead: Copied rand.so for ' + parch, level=xbmc.LOGDEBUG)
+            if xbmcvfs.exists(p_openssl):
+                xbmcvfs.delete(p_openssl)
+            f_openssl = xbmc.translatePath(ppylib + '/multiarch/_openssl.so.' + parch)
+            xbmcvfs.copy(f_openssl, p_openssl)
+            os.chmod(p_openssl, 0755)
+            xbmc.log('SickPotatoHead: Copied _openssl.so for ' + parch, level=xbmc.LOGDEBUG)
         except Exception, e:
-            xbmc.log('SickPotatoHead: Error Copying rand.so for ' + parch, level=xbmc.LOGERROR)
+            xbmc.log('SickPotatoHead: Error Copying _openssl.so for ' + parch, level=xbmc.LOGERROR)
             xbmc.log(str(e), level=xbmc.LOGERROR)
         
         try:
-            if xbmcvfs.exists(pcrypto):
-                xbmcvfs.delete(pcrypto)
-            fcrypto = xbmc.translatePath(ppylib + '/multiarch/crypto.so.' + parch)
-            xbmcvfs.copy(fcrypto, pcrypto)
-            os.chmod(pcrypto, 0755)
-            xbmc.log('SickPotatoHead: Copied crypto.so for ' + parch, level=xbmc.LOGDEBUG)
+            if xbmcvfs.exists(p_padding):
+                xbmcvfs.delete(p_padding)
+            f_padding = xbmc.translatePath(ppylib + '/multiarch/_padding.so.' + parch)
+            xbmcvfs.copy(f_padding, p_padding)
+            os.chmod(p_padding, 0755)
+            xbmc.log('SickPotatoHead: Copied _padding.so for ' + parch, level=xbmc.LOGDEBUG)
         except Exception, e:
-            xbmc.log('SickPotatoHead: Error Copying crypto.so for ' + parch, level=xbmc.LOGERROR)
+            xbmc.log('SickPotatoHead: Error Copying _padding.so for ' + parch, level=xbmc.LOGERROR)
             xbmc.log(str(e), level=xbmc.LOGERROR)
         
         try:
@@ -225,6 +226,29 @@ def main():
             xbmc.log('SickPotatoHead: Copied libssl for ' + parch, level=xbmc.LOGDEBUG)
         except Exception, e:
             xbmc.log('SickPotatoHead: Error Copying libssl for ' + parch, level=xbmc.LOGERROR)
+            xbmc.log(str(e), level=xbmc.LOGERROR)
+        
+        try:
+            if xbmcvfs.exists(plibffi):
+                xbmcvfs.delete(plibffi)
+            flibffi = xbmc.translatePath(ppylib + '/multiarch/libffi.so.6.0.4.' + parch)
+            xbmcvfs.copy(flibffi, plibffi)
+            os.chmod(plibffi, 0755)
+            os.symlink(plibffi, plibffilk)
+            xbmc.log('SickPotatoHead: Copied libffi for ' + parch, level=xbmc.LOGDEBUG)
+        except Exception, e:
+            xbmc.log('SickPotatoHead: Error Copying libffi for ' + parch, level=xbmc.LOGERROR)
+            xbmc.log(str(e), level=xbmc.LOGERROR)
+        
+        try:
+            if xbmcvfs.exists(p_cffi_backend):
+                xbmcvfs.delete(p_cffi_backend)
+            f_cffi_backend = xbmc.translatePath(ppylib + '/multiarch/_cffi_backend.so.' + parch)
+            xbmcvfs.copy(f_cffi_backend, p_cffi_backend)
+            os.chmod(p_cffi_backend, 0755)
+            xbmc.log('SickPotatoHead: Copied _cffi_backend.so for ' + parch, level=xbmc.LOGDEBUG)
+        except Exception, e:
+            xbmc.log('SickPotatoHead: Error Copying _cffi_backend.so for ' + parch, level=xbmc.LOGERROR)
             xbmc.log(str(e), level=xbmc.LOGERROR)
         
         try:

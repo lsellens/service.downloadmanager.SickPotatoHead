@@ -41,18 +41,20 @@
 #endif
 
 #if PY_MAJOR_VERSION >= 3
-#  define IS_PYTHON3 1
+#  define IS_PYTHON2 0  /* prefer for special casing Python 2.x */
+#  define IS_PYTHON3 1  /* avoid */
 #else
+#  define IS_PYTHON2 1
 #  define IS_PYTHON3 0
 #endif
 
-#if IS_PYTHON3
-#undef LXML_UNICODE_STRINGS
-#define LXML_UNICODE_STRINGS 1
-#else
+#if IS_PYTHON2
 #ifndef LXML_UNICODE_STRINGS
 #define LXML_UNICODE_STRINGS 0
 #endif
+#else
+#undef LXML_UNICODE_STRINGS
+#define LXML_UNICODE_STRINGS 1
 #endif
 
 #if !IS_PYPY
@@ -66,18 +68,14 @@
 #  endif
 #endif
 
-/* Python 3 doesn't have PyFile_*() anymore */
-#if PY_MAJOR_VERSION >= 3
-#  define PyFile_AsFile(o)                   (NULL)
-#else
 #if IS_PYPY
 #  undef PyFile_AsFile
 #  define PyFile_AsFile(o)                   (NULL)
-#  undef PyUnicode_FromFormat
-#  define PyUnicode_FromFormat(s, a, b)      (NULL)
 #  undef PyByteArray_Check
 #  define PyByteArray_Check(o)               (0)
-#endif
+#elif !IS_PYTHON2
+   /* Python 3+ doesn't have PyFile_*() anymore */
+#  define PyFile_AsFile(o)                   (NULL)
 #endif
 
 #if PY_VERSION_HEX <= 0x03030000 && !(defined(CYTHON_PEP393_ENABLED) && CYTHON_PEP393_ENABLED)
@@ -85,6 +83,41 @@
   #define PyUnicode_GET_LENGTH(u)   PyUnicode_GET_SIZE(u)
   #define PyUnicode_KIND(u)         (sizeof(Py_UNICODE))
   #define PyUnicode_DATA(u)         ((void*)PyUnicode_AS_UNICODE(u))
+#endif
+
+#if IS_PYPY
+#  ifndef PyUnicode_FromFormat
+#    define PyUnicode_FromFormat  PyString_FromFormat
+#  endif
+#  if !IS_PYTHON2 && !defined(PyBytes_FromFormat)
+#    ifdef PyString_FromFormat
+#      define PyBytes_FromFormat  PyString_FromFormat
+#    else
+#include <stdarg.h>
+static PyObject* PyBytes_FromFormat(const char* format, ...) {
+    PyObject *string;
+    va_list vargs;
+#ifdef HAVE_STDARG_PROTOTYPES
+    va_start(vargs, format);
+#else
+    va_start(vargs);
+#endif
+    string = PyUnicode_FromFormatV(format, vargs);
+    va_end(vargs);
+    if (string && PyUnicode_Check(string)) {
+        PyObject *bstring = PyUnicode_AsUTF8String(string);
+        Py_DECREF(string);
+        string = bstring;
+    }
+    if (string && !PyBytes_CheckExact(string)) {
+        Py_DECREF(string);
+        string = NULL;
+        PyErr_SetString(PyExc_TypeError, "String formatting and encoding failed to return bytes object");
+    }
+    return string;
+}
+#    endif
+#  endif
 #endif
 
 /* PySlice_GetIndicesEx() has wrong signature in Py<=3.1 */
@@ -95,14 +128,18 @@
 #endif
 
 #ifdef WITHOUT_THREADING
+#  undef PyEval_SaveThread
 #  define PyEval_SaveThread() (NULL)
-#  define PyEval_RestoreThread(state)
+#  undef PyEval_RestoreThread
+#  define PyEval_RestoreThread(state)  if (state); else {}
+#  undef PyGILState_Ensure
 #  define PyGILState_Ensure() (PyGILState_UNLOCKED)
-#  define PyGILState_Release(state)
+#  undef PyGILState_Release
+#  define PyGILState_Release(state)  if (state); else {}
 #  undef  Py_UNBLOCK_THREADS
-#  define Py_UNBLOCK_THREADS
+#  define Py_UNBLOCK_THREADS  _save = NULL;
 #  undef  Py_BLOCK_THREADS
-#  define Py_BLOCK_THREADS
+#  define Py_BLOCK_THREADS  if (_save); else {}
 #endif
 
 #ifdef WITHOUT_THREADING
@@ -139,6 +176,9 @@
 #  define xmlSchematronSetValidStructuredErrors(ctxt, errorfunc, data)
 #endif
 
+#if LIBXML_VERSION < 20708
+#  define HTML_PARSE_NODEFDTD 4
+#endif
 #if LIBXML_VERSION < 20900
 #  define XML_PARSE_BIG_LINES 4194304
 #endif
@@ -184,6 +224,16 @@ long _ftol2( double dblSource ) { return _ftol( dblSource ); }
              (PyTypeObject*)(T), __pyx_empty_tuple, NULL))
 
 #define _fqtypename(o)  ((Py_TYPE(o))->tp_name)
+
+#define lxml_malloc(count, item_size) \
+    (unlikely_condition((size_t)(count) > (size_t) (PY_SSIZE_T_MAX / item_size)) ? NULL : \
+     (PyMem_Malloc((count) * item_size)))
+
+#define lxml_realloc(mem, count, item_size) \
+    (unlikely_condition((size_t)(count) > (size_t) (PY_SSIZE_T_MAX / item_size)) ? NULL : \
+     (PyMem_Realloc(mem, (count) * item_size)))
+
+#define lxml_free(mem)  PyMem_Free(mem)
 
 #if PY_MAJOR_VERSION < 3
 #define _isString(obj)   (PyString_CheckExact(obj)  || \

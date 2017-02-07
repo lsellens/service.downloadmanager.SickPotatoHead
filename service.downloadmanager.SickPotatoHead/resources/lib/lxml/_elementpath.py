@@ -220,18 +220,23 @@ ops = {
     "..": prepare_parent,
     "//": prepare_descendant,
     "[": prepare_predicate,
-    }
+}
 
-_cache = {}
 
 # --------------------------------------------------------------------
 
+_cache = {}
+
+
 def _build_path_iterator(path, namespaces):
-    # compile selector pattern
+    """compile selector pattern"""
+    if namespaces and (None in namespaces or '' in namespaces):
+        raise ValueError("empty namespace prefix is not supported in ElementPath")
     if path[-1:] == "/":
-        path = path + "*" # implicit all (FIXME: keep this?)
+        path += "*"  # implicit all (FIXME: keep this?)
+    cache_key = (path, namespaces and tuple(sorted(namespaces.items())) or None)
     try:
-        return _cache[(path, namespaces and tuple(sorted(namespaces.items())) or None)]
+        return _cache[cache_key]
     except KeyError:
         pass
     if len(_cache) > 100:
@@ -261,8 +266,9 @@ def _build_path_iterator(path, namespaces):
                 token = _next()
         except StopIteration:
             break
-    _cache[path] = selector
+    _cache[cache_key] = selector
     return selector
+
 
 ##
 # Iterate over the matching nodes
@@ -274,26 +280,24 @@ def iterfind(elem, path, namespaces=None):
         result = select(result)
     return result
 
+
 ##
 # Find first matching object.
 
 def find(elem, path, namespaces=None):
     it = iterfind(elem, path, namespaces)
     try:
-        try:
-            _next = it.next
-        except AttributeError:
-            return next(it)
-        else:
-            return _next()
+        return next(it)
     except StopIteration:
         return None
+
 
 ##
 # Find all matching objects.
 
 def findall(elem, path, namespaces=None):
     return list(iterfind(elem, path, namespaces))
+
 
 ##
 # Find text for first matching object.
