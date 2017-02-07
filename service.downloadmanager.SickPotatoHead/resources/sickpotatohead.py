@@ -333,6 +333,8 @@ def main():
         # ----------------
         if sickbeard_launch:
             xbmc.log('SickPotatoHead: Launching SickBeard...', level=xbmc.LOGDEBUG)
+            if os.path.isfile("/var/run/sickbeard.pid"):
+                os.system("kill `cat /var/run/sickbeard.pid`")
             subprocess.call(sickbeard, close_fds=True)
             xbmc.log('SickPotatoHead: ...done', level=xbmc.LOGDEBUG)
     except Exception, e:
@@ -410,6 +412,8 @@ def main():
         # ------------------
         if couchpotato_launch:
             xbmc.log('SickPotatoHead: Launching CouchPotatoServer...', level=xbmc.LOGDEBUG)
+            if os.path.isfile("/var/run/couchpotato.pid"):
+                os.system("kill `cat /var/run/couchpotato.pid`")
             subprocess.call(couchpotatoserver, close_fds=True)
             xbmc.log('SickPotatoHead: ...done', level=xbmc.LOGDEBUG)
     except Exception, e:
@@ -467,6 +471,8 @@ def main():
         # -----------------
         if headphones_launch:
             xbmc.log('SickPotatoHead: Launching Headphones...', level=xbmc.LOGDEBUG)
+            if os.path.isfile("/var/run/headphones.pid"):
+                os.system("kill `cat /var/run/headphones.pid`")
             subprocess.call(headphones, close_fds=True)
             xbmc.log('SickPotatoHead: ...done', level=xbmc.LOGDEBUG)
     except Exception, e:
