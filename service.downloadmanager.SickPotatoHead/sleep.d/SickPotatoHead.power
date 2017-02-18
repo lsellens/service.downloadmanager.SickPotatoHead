@@ -11,9 +11,9 @@ LOCKFILE="/var/lock/SickPotatoHead.sleep"
 if [ "$RESTART_ON_RESUME" == "true" ] ; then
   case "$1" in
     hibernate|suspend)
-      if [ ! -z "`ps | grep -E 'python.*service.downloadmanager.SickPotatoHead' | awk '{print $1}'`" ] ; then
+      if [ ! -z "`ps | grep -E 'python.*service.downloadmanager.SickPotatoHead' | grep -v 'grep' | awk '{print $1}'`" ] ; then
         progress "Shutting down SickPotatoHead for suspending..."
-        kill `ps | grep -E 'python.*service.downloadmanager.SickPotatoHead' | awk '{print $1}'` 2>/dev/null
+        kill `ps | grep -E 'python.*service.downloadmanager.SickPotatoHead' | grep -v 'grep' | awk '{print $1}'` 2>/dev/null
         touch $LOCKFILE
       fi
       ;;
