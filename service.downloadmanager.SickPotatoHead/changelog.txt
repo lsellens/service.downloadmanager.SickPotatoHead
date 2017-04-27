@@ -1,3 +1,7 @@
+1.7.0
+- update to SickRage-v2017.04.26-1
+- update to CouchPotatoServer-711310d
+
 1.6.9
 - removed i686 biniaries
 - update to SickRage-v2017.02.2-1

@@ -33,5 +33,11 @@
     <description lang="es">SickPotatoHead es un fork derivado de SABnzbd-Suite orientado a los que como nosotros no tenemos acceso a grupos de noticias. Se actualiza frecuentemente a las últimas versiones de SB, CP, y HP.</description>
     <description lang="ca_ES">SickPotatoHead és un fork derivat de SABnzbd-Suite orientada cap a nosaltres els que no tenim accés a grups de notícies. S'actualitza freqüentment a les últimes versions de SB, CP, i H</description>
     <platform>linux</platform>
+    <license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</license>
+    <source>https://github.com/lsellens/service.downloadmanager.SickPotatoHead</source>
+    <news>1.7.0 - update to SickRage-v2017.04.26-1, and CouchPotatoServer-711310d</news>
+    <assets>
+      <icon>resources/icon.png</icon>
+    </assets>
   </extension>
 </addon>
