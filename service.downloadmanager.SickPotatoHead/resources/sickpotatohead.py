@@ -38,7 +38,6 @@ def main():
     # settings
     pdefaultsuitesettings = xbmc.translatePath(__addonpath__ + '/settings-default.xml')
     psuitesettings        = xbmc.translatePath(__addonhome__ + 'settings.xml')
-    pxbmcsettings         = xbmc.translatePath('special://home/userdata/guisettings.xml')
     psickbeardsettings    = xbmc.translatePath(__addonhome__ + 'sickbeard.ini')
     pcouchpotatoserversettings  = xbmc.translatePath(__addonhome__ + 'couchpotatoserver.ini')
     pheadphonessettings   = xbmc.translatePath(__addonhome__ + 'headphones.ini')
