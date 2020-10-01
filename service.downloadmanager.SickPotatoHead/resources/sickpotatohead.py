@@ -1,6 +1,6 @@
 # Initializes and launches Couchpotato V2, Sickbeard and Headphones
-from xml.dom.minidom import parseString
 from lib.configobj import ConfigObj
+import json
 import os
 import subprocess
 import hashlib
@@ -15,6 +15,18 @@ def main():
         if not xbmcvfs.exists(dirname):
             xbmcvfs.mkdirs(dirname)
             xbmc.log('SickPotatoHead: Created directory ' + dirname, level=xbmc.LOGDEBUG)
+    
+    
+    def jsonrpc(method, *args):
+        values = {"jsonrpc": "2.0", "id": "1", "method": method}
+        if args:
+            values["params"] = args
+        json_cmd = json.dumps(values, sort_keys=True, separators=(',', ':'))
+        json_cmd = json_cmd.replace('[{', '{')
+        json_cmd = json_cmd.replace('}]', '}')
+        return json_cmd
+    
+    
     # define some things that we're gonna need, mainly paths
     # ------------------------------------------------------
     
@@ -105,20 +117,12 @@ def main():
     headphones_launch = (__addon__.getSetting('HEADPHONES_LAUNCH').lower() == 'true')
     
     # XBMC
-    fxbmcsettings                 = open(pxbmcsettings, 'r')
-    data                          = fxbmcsettings.read()
-    fxbmcsettings.close()
-    xbmcsettings                  = parseString(data)
-    xbmcservices                  = xbmcsettings.getElementsByTagName('services')[0]
-    xbmcport                      = xbmcservices.getElementsByTagName('webserverport')[0].firstChild.data
-    try:
-        xbmcuser                      = xbmcservices.getElementsByTagName('webserverusername')[0].firstChild.data
-    except StandardError:
-        xbmcuser                      = ''
-    try:
-        xbmcpwd                       = xbmcservices.getElementsByTagName('webserverpassword')[0].firstChild.data
-    except StandardError:
-        xbmcpwd                       = ''
+    parameters = {'setting': 'services.webserverport'}
+    xbmcport = json.loads(xbmc.executeJSONRPC(jsonrpc('Settings.GetSettingValue', parameters)))
+    parameters = {'setting': 'services.webserverusername'}
+    xbmcuser = json.loads(xbmc.executeJSONRPC(jsonrpc('Settings.GetSettingValue', parameters)))
+    parameters = {'setting': 'services.webserverpassword'}
+    xbmcpwd = json.loads(xbmc.executeJSONRPC(jsonrpc('Settings.GetSettingValue', parameters)))
     
     # prepare execution environment
     # -----------------------------
@@ -285,9 +289,9 @@ def main():
         defaultconfig['General']['log_dir']                    = __addonhome__ + 'logs'
         defaultconfig['KODI'] = {}
         defaultconfig['KODI']['use_kodi']                      = '1'
-        defaultconfig['KODI']['kodi_host']                     = 'localhost:' + xbmcport
-        defaultconfig['KODI']['kodi_username']                 = xbmcuser
-        defaultconfig['KODI']['kodi_password']                 = xbmcpwd
+        defaultconfig['KODI']['kodi_host']                     = 'localhost:' + str(xbmcport['result']['value'])
+        defaultconfig['KODI']['kodi_username']                 = xbmcuser['result']['value']
+        defaultconfig['KODI']['kodi_password']                 = xbmcpwd['result']['value']
         defaultconfig['TORRENT'] = {}
     
         if transauth:
@@ -368,9 +372,9 @@ def main():
         defaultconfig['updater']['automatic']                  = '0'
         defaultconfig['xbmc'] = {}
         defaultconfig['xbmc']['enabled']                       = '1'
-        defaultconfig['xbmc']['host']                          = 'localhost:' + xbmcport
-        defaultconfig['xbmc']['username']                      = xbmcuser
-        defaultconfig['xbmc']['password']                      = xbmcpwd
+        defaultconfig['xbmc']['host']                          = 'localhost:' + str(xbmcport['result']['value'])
+        defaultconfig['xbmc']['username']                      = xbmcuser['result']['value']
+        defaultconfig['xbmc']['password']                      = xbmcpwd['result']['value']
         defaultconfig['transmission'] = {}
     
         if transauth:
@@ -439,9 +443,9 @@ def main():
         defaultconfig['General']['log_dir']                    = __addonhome__ + 'logs'
         defaultconfig['XBMC'] = {}
         defaultconfig['XBMC']['xbmc_enabled']                  = '1'
-        defaultconfig['XBMC']['xbmc_host']                     = 'localhost:' + xbmcport
-        defaultconfig['XBMC']['xbmc_username']                 = xbmcuser
-        defaultconfig['XBMC']['xbmc_password']                 = xbmcpwd
+        defaultconfig['XBMC']['xbmc_host']                     = 'localhost:' + str(xbmcport['result']['value'])
+        defaultconfig['XBMC']['xbmc_username']                 = xbmcuser['result']['value']
+        defaultconfig['XBMC']['xbmc_password']                 = xbmcpwd['result']['value']
         defaultconfig['Transmission'] = {}
     
         if transauth:
