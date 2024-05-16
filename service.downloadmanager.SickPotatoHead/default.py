@@ -1,4 +1,3 @@
-#
 import xbmcaddon
 
 __scriptname__ = "SickPotatoHead"

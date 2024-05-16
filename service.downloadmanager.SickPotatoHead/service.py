@@ -1,4 +1,3 @@
-#
 from os import system
 import resources.sickpotatohead as sickpotatohead
 import xbmc
